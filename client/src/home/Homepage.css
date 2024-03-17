@@ -1,0 +1,95 @@
+.homepage-container{
+    height: 100vh;
+    width: 100vw;
+    background-color:#ffffff;
+    overflow: hidden;
+}
+
+.content-outside{
+
+height: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+}
+
+
+.circle{
+
+    border-radius: 50%;
+    border: 0;
+}
+
+#first-circle{
+    width: 330px;
+    height: 330px;
+    align-self: flex-start;
+    position: absolute;
+    left: -50px;
+    top: -98px;
+    background-color: rgba(178, 223, 255, 1);
+
+}
+
+#second-circle{
+    width: 330px;
+    height: 330px;
+    align-self: flex-start;
+    position: absolute;
+    right: -49px;
+    bottom: -98px;
+    background-color: rgba(178, 223, 255, 1);
+
+}
+.table-circle{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    gap: 8px;
+}
+
+#small-circle{
+
+    width: 17px;
+    height: 17px;
+    background-color: rgba(45, 165, 252, 0.5);
+}
+
+
+.table-circle-row{
+    display: flex;
+    gap: 8px;
+
+}
+.top-table{
+    position: absolute;
+    top: 17%;
+    left: 79%;
+    z-index: 11;
+}
+.bottom-table{
+    position: absolute;
+    bottom: 32%;
+    left: 12.5%;
+    z-index: 11;
+}
+
+.content-inside{
+    height: 74%;
+    width: 79%;
+    background-color: rgb(206, 243, 255, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    z-index: 15;
+
+}
+.logo{
+    color: rgba(125, 140, 196, 1);
+    font-weight: 400;
+    font-size: 42px;
+    
+}

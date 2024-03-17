@@ -1,0 +1,88 @@
+.signin{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    align-items: center;
+    
+}
+
+.signin-message{
+    font-weight: 400;
+    margin-bottom: 70px;
+    font-size: 16px;
+    opacity: 0.6;
+}
+
+
+.signin-form{
+    
+    display: flex;
+    flex-direction: column;
+    width: 420px;
+}
+
+#signin-userid, #signin-password{
+    padding: 10px 11px;
+    border: 1px solid rgba(226, 226, 226, 1);
+    border-radius: 5px;
+   
+}
+#signin-userid::placeholder, #signin-password::placeholder{
+    color: rgba(226, 226, 226, 1);
+}
+
+#signin-userid:focus, #signin-password:focus{
+
+    outline: 0;
+}
+
+.hide-eye{
+
+    position: absolute;
+    top: 54.9%;
+    right: 40%;
+
+}
+
+#signin-signin-btn{
+    margin-top: 38px;
+    color: white;
+    height: 40px;
+    background-color: rgba(125, 140, 196, 1);
+    border-radius: 5px;
+    border: 0;
+    transition: all 0.3s ease-in;
+    
+}
+#signin-signin-btn:hover{
+    background-color: rgb(102, 125, 207)
+}
+
+
+#signin-signup-btn{
+
+    color: rgba(125, 140, 196, 1);
+    border: 0;
+    background: transparent;
+    font-weight: 500;
+    margin-top: 14px;
+    transition: all 0.3s ease-in;
+
+}
+#signin-signup-btn:hover{
+    font-weight: 600;
+    font-size: 20px;
+
+}
+
+.error-message-active{
+    font-style: italic;
+    text-align: right;
+    color: #EF1A1A;
+    margin-top: 3px;
+    
+}
+
+.error-message-inactive{
+    visibility: hidden;
+}
