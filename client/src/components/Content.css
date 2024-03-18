@@ -1,0 +1,18 @@
+.content-main{
+
+    
+    grid-column: 2/3;
+    grid-row: 2/3;
+    background-color: white;
+    padding: 30px;
+    
+
+}
+
+.content-main-inside{
+    background-color: rgba(242, 242, 242, 1);
+    border-radius: 7px;
+    height: 700px;
+    padding: 20px;
+}
+

@@ -1,0 +1,59 @@
+.aside{
+    background-color: rgba(206, 243, 255, 1);
+    padding-top: 34px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    grid-column: 1/2;
+    grid-row: 1/3;
+    
+}
+
+.tabs{
+margin-top: 27%;
+display: flex;
+flex-direction: column;
+gap:2px;
+}
+.dashboard-block, .contacts-block{
+  display: flex;
+  justify-content: center;
+    height: 50px;
+    margin: 5px 0;
+    border-radius: 6px;
+}
+
+
+#dashboard-toggle, #total-contacts-toggle{
+    background: none;
+    border: 0;
+    font-weight: 600;
+    margin-left: 5px;
+}
+.contacts-block{
+    background: rgba(45, 165, 252, 1);
+    
+}
+#total-contacts-toggle{
+    color: white;
+}
+
+.logout-section{
+    margin-top: 63.5vh;
+    border-top: 2px solid rgba(234, 234, 234, 1);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 22px;
+}
+
+.logout-button{
+    margin-right: 62px;
+    background: none;
+    border: 0;
+
+}
+.logout-button>img{
+    margin-right: 6px;
+}

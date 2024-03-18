@@ -5,7 +5,7 @@ import Dashboard from './home/Dashboard'
 
 function App() {
 
-
+console.log('app rendered')
   return (
     <BrowserRouter>
     <Routes>

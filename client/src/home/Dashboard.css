@@ -1,0 +1,26 @@
+.dashboard{
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 90px 1fr;
+    position: relative;
+    
+}
+
+.pagefooter{
+
+    position: absolute;
+    bottom: 5%;
+    right: 1.7%;
+    display: flex;
+    gap:3px;
+
+}
+#page-buttons{
+   
+    background: none;
+    border: 0;
+    font-weight: 400;
+    font-size: 16px;
+}
+
