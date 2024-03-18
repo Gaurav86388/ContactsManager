@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, memo} from 'react'
 import "./Signup.css"
-const Signup = ({handleSignUpToggle}) => {
 
+const Signup = memo(function Signup ({handleSignUpToggle}){
+  console.log("sign up rendered")
   const [checkMatchPassword, setCheckMatchPassword] = useState(true)
   const [signup, setSignup] = useState({
     mailID: "",
@@ -67,6 +68,5 @@ const Signup = ({handleSignUpToggle}) => {
         
         </div>
   )
-}
-
+})
 export default Signup

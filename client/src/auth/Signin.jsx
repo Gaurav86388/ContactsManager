@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, memo} from 'react'
 import "./Signin.css"
 import eyeimage from "/eyecancel.svg"
 import {useNavigate} from 'react-router-dom'
 
-const Signin = ({handleSignUpToggle, setSigninSuccess}) => {
-
+const Signin = memo(function Signin({handleSignUpToggle, setSigninSuccess}){
+  console.log("sign in rendered")
   const [userNotFound, setNotUserFound] = useState(false)
   const [passwordInCorrect, setPasswordInCorrect] = useState(false)
 
@@ -93,6 +93,6 @@ const Signin = ({handleSignUpToggle, setSigninSuccess}) => {
         
         </div>
   )
-}
+})
 
 export default Signin

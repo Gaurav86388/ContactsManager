@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import "./Homepage.css";
 import Signin from "../auth/Signin";
 import Signup from "../auth/Signup";
 import Loader from "../extra/Loader"
 
-function Circle({ circleName, size, tableName }) {
+const Circle = memo(function Circle({ circleName, size, tableName }) {
+
+  console.log('cirle rendered')
+
   if (size === "small dots") {
     return (
       <table className={tableName}>
@@ -27,10 +30,10 @@ function Circle({ circleName, size, tableName }) {
   }
 
   return <div className="circle" id={circleName} />;
-}
+})
 
 const Homepage = () => {
-
+  console.log('homepage rendered')
 const [signIn, setSignIn] = useState(true)
 const [signinSuccess, setSigninSuccess] = useState(false)
 
