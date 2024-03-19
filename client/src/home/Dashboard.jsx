@@ -1,44 +1,49 @@
-import React from 'react'
-import Navbar from '../components/Navbar'
-import Aside from '../components/Aside'
-import "./Dashboard.css"
-import Content from '../components/Content'
+import React from "react";
+import "./Dashboard.css";
 
-import leftonlyarrow from "/leftonlyarrow.svg"
-import rightonlyarrow from "/rightonlyarrow.svg"
+import Navbar from "../components/Navbar";
+import Aside from "../components/Aside";
+import Content from "../components/Content";
+import AlertBox from "../components/AlertBox";
+import {useFileHandle} from "../context/Context"
+import leftonlyarrow from "/leftonlyarrow.svg";
+import rightonlyarrow from "/rightonlyarrow.svg";
 
 
-function PageNumber(){
-  return  <div className="pagefooter">
-  
-    <img src={leftonlyarrow} alt="left only arrow" />
-    {Array.from({length: 4}, (item, index)=>{
-  
-      return <button id={`page-buttons`} key={index}>{index+1}</button>
-    })}
-    <img src={rightonlyarrow} alt="right only arrow" />
-  </div>
-  }
 
 const Dashboard = () => {
-    
-  console.log('dashboard rendered')
-  return (
-    <div className='dashboard'>
+
+
+  console.log("dashboard rendered");
+
+  const {alertOn} = useFileHandle()
+  return (<>
+  {alertOn && <AlertBox />}
+    <div className="dashboard">
       <Aside />
-       <Navbar />
-       <Content />
-       <PageNumber />
-      
-     
-      
-      
-        
-
+      <Navbar />
+      <Content />
+      <PageNumber />
     </div>
-  )
+    </>
+  );
+};
+
+export default Dashboard;
+
+
+function PageNumber() {
+  return (
+    <div className="pagefooter">
+      <img src={leftonlyarrow} alt="left only arrow" />
+      {Array.from({ length: 4 }, (item, index) => {
+        return (
+          <button id={`page-buttons`} key={index}>
+            {index + 1}
+          </button>
+        );
+      })}
+      <img src={rightonlyarrow} alt="right only arrow" />
+    </div>
+  );
 }
-
-export default Dashboard
-
-//<Content />

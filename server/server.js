@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv'
 import userRouter from './routes/userRouter.js';
+import contactsRouter from './routes/contactsRouter.js';
 import cors from 'cors';
 const app = express()
 
@@ -30,6 +31,7 @@ async function main(){
     }
 
     app.use("/user", userRouter)
+    app.use("/contact", contactsRouter)
     
     
 
