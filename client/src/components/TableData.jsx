@@ -1,54 +1,105 @@
 import React, { useEffect, useState } from "react";
-
 import "./TableData.css";
-
+import { useFileHandle } from "../context/Context";
 import bin from "/bin.svg";
 import editPencil from "/editpencil.svg";
 import upboldarrow from "/upboldarrow.svg";
 import downboldarrow from "/downboldarrow.svg";
-import { useFileHandle } from "../context/Context";
-const tableHeadings = [
-  "Name",
-  "Designation",
-  "Company",
-  "Industry",
-  "Email",
-  "Phone number",
-  "Country",
-  "Action",
-];
+
+function ActionButtons({ Email }) {
+  const { setAlertOn, setPressedButton, setDeleteMail } = useFileHandle();
+
+  function handleDelete() {
+    setDeleteMail(Email);
+    setPressedButton("Delete");
+    setAlertOn(true);
+  }
+
+  return (
+    <div className="action-icons">
+      <button className="edit-row">
+        <img src={editPencil} alt="pencil edit" />
+      </button>
+
+      <button className="delete-row" onClick={handleDelete}>
+        <img src={bin} alt="bin" />
+      </button>
+    </div>
+  );
+}
+
+function FirstColCheckBox({ userMail, name, nameCheckbox, receivedData }) {
+  const { setCheckedBoxEmails} = useFileHandle();
+  const [isChecked, setIsChecked] = useState(nameCheckbox);
+
+  function handleCheck(e) {
+    setIsChecked(e.target.checked);
+
+    if (e.target.checked) {
+      setCheckedBoxEmails((prev) => [...prev, userMail]);
+    } else {
+      setCheckedBoxEmails((prev) => {
+        const findIndex = prev.findIndex((item) => item === userMail);
+        const newArray = prev.filter((item, index) =>
+          index !== findIndex ? item : null
+        );
+        return newArray;
+      });
+    }
+  }
+
+  useEffect(() => {
+    if (receivedData) {
+      if (nameCheckbox) {
+        setIsChecked(true);
+        setCheckedBoxEmails((prev) => [...prev, userMail]);
+      } else {
+        setIsChecked(false);
+        setCheckedBoxEmails((prev) => {
+          const findIndex = prev.findIndex((item) => item === userMail);
+          const newArray = prev.filter((item, index) =>
+            index !== findIndex ? item : null
+          );
+          return newArray;
+        });
+      }
+    }
+  }, [nameCheckbox]);
+
+  return (
+    <div className="first-col">
+      <input
+        type="checkbox"
+        name="colCheckbox"
+        id="first-col-checkbox"
+        onChange={handleCheck}
+        checked={isChecked}
+      />
+      <span>{name}</span>
+    </div>
+  );
+}
 
 const TableData = () => {
-  const [ receivedData, setReceivedData] = useState([])
-const {tableUpdated, setTableUpdated} = useFileHandle()
+  const [receivedData, setReceivedData] = useState([]);
+  const { tableUpdated , nameCheckbox, setNameCheckbox  } = useFileHandle();
+  
 
-useEffect(()=>{
-
-  fetch("http://localhost:3000/contact", {
-    method: 'GET',
-    headers:{
-      'Content-Type': "application/json",
-      Accept: "application/json",
-    }
-  })
-  .then(res=>res.json())
-  .then(data=>{
-    
-    setReceivedData(data)
-  })
-  .catch(e=>console.log(e))
-
-}, [tableUpdated])
-
-
-
-
-
-
-
-
-
-
+  useEffect(() => {
+    fetch("http://localhost:3000/contact", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setReceivedData(data);
+        
+      })
+      .catch((e) => console.log(e));
+  }, [tableUpdated]);
 
   return (
     <>
@@ -64,6 +115,8 @@ useEffect(()=>{
                         type="checkbox"
                         name="colCheckbox"
                         id="first-col-checkbox"
+                        onChange={() => setNameCheckbox((prev) => !prev)}
+                        checked={nameCheckbox}
                       />
                     )}
                     <span>{item}</span>
@@ -85,14 +138,12 @@ useEffect(()=>{
             return (
               <tr className="data-row" key={item.Name}>
                 <td>
-                  <div className="first-col">
-                    <input
-                      type="checkbox"
-                      name="colCheckbox"
-                      id="first-col-checkbox"
-                    />
-                    <span>{item.Name}</span>
-                  </div>
+                  <FirstColCheckBox
+                    userMail={item.Email}
+                    name={item.Name}
+                    nameCheckbox={nameCheckbox}
+                    receivedData={receivedData}
+                  />
                 </td>
                 <td>{item.Designation}</td>
                 <td>{item.Company}</td>
@@ -101,15 +152,7 @@ useEffect(()=>{
                 <td>{item.PhoneNumber}</td>
                 <td>{item.Country}</td>
                 <td>
-                  <div className="action-icons">
-                    <button className="edit-row">
-                      <img src={editPencil} alt="pencil edit" />
-                    </button>
-
-                    <button className="delete-row">
-                      <img src={bin} alt="bin" />
-                    </button>
-                  </div>
+                  <ActionButtons Email={item.Email} />
                 </td>
               </tr>
             );
@@ -121,3 +164,14 @@ useEffect(()=>{
 };
 
 export default TableData;
+
+const tableHeadings = [
+  "Name",
+  "Designation",
+  "Company",
+  "Industry",
+  "Email",
+  "Phone number",
+  "Country",
+  "Action",
+];

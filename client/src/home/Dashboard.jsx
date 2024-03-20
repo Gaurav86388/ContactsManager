@@ -5,32 +5,28 @@ import Navbar from "../components/Navbar";
 import Aside from "../components/Aside";
 import Content from "../components/Content";
 import AlertBox from "../components/AlertBox";
-import {useFileHandle} from "../context/Context"
+import { useFileHandle } from "../context/Context";
 import leftonlyarrow from "/leftonlyarrow.svg";
 import rightonlyarrow from "/rightonlyarrow.svg";
 
-
-
 const Dashboard = () => {
-
-
   console.log("dashboard rendered");
 
-  const {alertOn} = useFileHandle()
-  return (<>
-  {alertOn && <AlertBox />}
-    <div className="dashboard">
-      <Aside />
-      <Navbar />
-      <Content />
-      <PageNumber />
-    </div>
+  const { alertOn } = useFileHandle();
+  return (
+    <>
+      {alertOn && <AlertBox />}
+      <div className="dashboard">
+        <Aside />
+        <Navbar />
+        <Content />
+        <PageNumber />
+      </div>
     </>
   );
 };
 
 export default Dashboard;
-
 
 function PageNumber() {
   return (

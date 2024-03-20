@@ -9,11 +9,17 @@ import deleteicon from "/deleteAlerticon.svg";
 import uploadfile from "/uploadfile.svg";
 
 const AlertBox = () => {
-
-  const { pressedButton, setAlertOn, tableUpdated, setTableUpdated } = useFileHandle();
-  const [arrayNumber, setArrayNumber] = useState(0);
-
+  const {
+    pressedButton,
+    setAlertOn,
+    setTableUpdated,
+    deleteEmail,
+    checkedBoxEmails,
+    setNameCheckbox
+  } = useFileHandle();
+  const [arrayNumber, setArrayNumber] = useState(null);
   const [csvFile, setCsvFiles] = useState([]);
+
   useEffect(() => {
     setArrayNumber((prev) => {
       let value;
@@ -39,10 +45,11 @@ const AlertBox = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
-          setArrayNumber(1);
-          setCsvFiles([]);
-          setTableUpdated(prev=>!prev)
+          if (data.status === "contacts added") {
+            setArrayNumber(1);
+            setCsvFiles([]);
+            setTableUpdated((prev) => !prev);
+          }
         })
         .catch((e) => console.log(e));
     }
@@ -75,6 +82,27 @@ const AlertBox = () => {
     }
   }
 
+  function handleOkButton() {
+    const data = checkedBoxEmails !== null ? checkedBoxEmails : deleteEmail;
+    fetch("http://localhost:3000/contact", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ Email: data }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "contact deleted") {
+          setAlertOn(false);
+          
+          setNameCheckbox((prev) => !prev)
+          setTableUpdated((prev) => !prev);
+        }
+      })
+      .catch((e) => console.log(e));
+  }
   return (
     <>
       <div className="alert-overlay" />
@@ -96,12 +124,36 @@ const AlertBox = () => {
           </button>
         </div>
       ) : (
-        <div className="alert-box" onClick={() => setAlertOn(false)}>
+        <div
+          className="alert-box"
+          onClick={
+            arrayNumber === 1 || arrayNumber === 3
+              ? () => setAlertOn(false)
+              : null
+          }
+        >
           <div className="alert-icon">
-            <img src={alertArray[arrayNumber]?.imgUrl} alt="tick image" />
+            <img
+              src={alertArray[arrayNumber]?.imgUrl}
+              alt={`${alertArray.title} image`}
+            />
           </div>
           <h3>{alertArray[arrayNumber]?.title}</h3>
           <h6>{alertArray[arrayNumber]?.message} </h6>
+          {arrayNumber === 1 ||
+            (arrayNumber === 2 && (
+              <div className="delete-btns">
+                <button
+                  id="import-cancel-btn"
+                  onClick={() => setAlertOn(false)}
+                >
+                  Cancel
+                </button>
+                <button id="import-ok-btn" onClick={handleOkButton}>
+                  Ok
+                </button>
+              </div>
+            ))}
         </div>
       )}
     </>
@@ -132,7 +184,6 @@ const alertArray = [
     imgUrl: check,
   },
 ];
-
 const fileTypes = [
   "application/vnd.ms-excel",
   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",

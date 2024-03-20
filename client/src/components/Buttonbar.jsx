@@ -6,31 +6,27 @@ import calender from "/calender.svg";
 import filters from "/filters.svg";
 import importpic from "/importpic.svg";
 import exportpic from "/exportpic.svg";
-import onlydownarrow from "/onlydownarrow.svg"
+import onlydownarrow from "/onlydownarrow.svg";
 
-import {useFileHandle} from "../context/Context"
-
+import { useFileHandle } from "../context/Context";
 
 function Buttons({ btnName, imgURL }) {
-  const {setAlertOn, setPressedButton}  = useFileHandle()
-  function handleButtonClick() {
+  const { setAlertOn, setPressedButton } = useFileHandle();
 
-   if( btnName === "Import"){
-    setPressedButton(btnName)
-    setAlertOn(true)
-   }
-}
+  function handleButtonClick() {
+    if (btnName === "Import" || btnName === "Delete") {
+      setPressedButton(btnName);
+      setAlertOn(true);
+    }
+  }
 
   return (
     <button className={`buttons-btns`} onClick={handleButtonClick}>
-     
       <img src={imgURL} alt={`${btnName}`} />
       <span>{btnName}</span>
-      {btnName === "Select Date" || btnName === "Filters" ?
-      <img src={onlydownarrow} alt="onlydownarrow" id="onlyDownArrow"/>
-      :
-      null
-    }
+      {btnName === "Select Date" || btnName === "Filters" ? (
+        <img src={onlydownarrow} alt="onlydownarrow" id="onlyDownArrow" />
+      ) : null}
     </button>
   );
 }
@@ -58,7 +54,6 @@ const Buttonbar = () => {
 };
 
 export default memo(Buttonbar);
-
 
 const buttonArray = [
   { name: "Select Date", imgURL: calender },

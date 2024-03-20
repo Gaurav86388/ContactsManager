@@ -65,9 +65,30 @@ contactsRouter.post("/", async(req, res)=>{
           }
     }
 
-    if(contactsData) return res.status(200).json("contacts added")
+    if(contactsData) return res.status(200).json({status: "contacts added"})
 
 })
+
+contactsRouter.delete("/", async(req, res)=>{
+
+    const data = req.body
+
+    let contactsData
+
+    try{
+        contactsData = await contactDetails.deleteMany(data)
+    }
+    catch(e){     
+            console.error(error);
+ 
+          }
+    
+
+    if(contactsData) return res.status(200).json({status:"contact deleted"})
+
+})
+
+
 
 
 
