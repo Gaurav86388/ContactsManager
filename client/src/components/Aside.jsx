@@ -4,14 +4,23 @@ import dashboardicon from "/dashboardicon.svg";
 import contactsicon from "/contactsicon.svg";
 import logout from "/logout.svg";
 import { useNavigate } from "react-router-dom";
-
+import { useFileHandle } from "../context/Context";
 const Aside = memo(function Aside() {
+const {setTableUpdated, setSearchDataOnTable} = useFileHandle()
+  
   const navigate = useNavigate();
 
   function handleLogout() {
     localStorage.removeItem("jwt");
     navigate("/");
   }
+
+  function handleDashboardClick(){
+    setSearchDataOnTable(prev=>({...prev, state:false, value:[]}))
+    setTableUpdated(prev=>!prev)
+  }
+
+
   return (
     <div className="aside">
       <h3>Logo</h3>
@@ -21,7 +30,7 @@ const Aside = memo(function Aside() {
           <input type="button" value="Dashboard" id="dashboard-toggle" />
         </div>
 
-        <div className="contacts-block">
+        <div className="contacts-block" onClick={handleDashboardClick}>
           <img src={contactsicon} alt="contactsicon" />
           <input
             type="button"

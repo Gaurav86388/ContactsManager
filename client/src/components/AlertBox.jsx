@@ -15,8 +15,11 @@ const AlertBox = () => {
     setTableUpdated,
     deleteEmail,
     checkedBoxEmails,
-    setNameCheckbox
+    setNameCheckbox,
+    nameCheckbox,
+    searchDataOnTable
   } = useFileHandle();
+
   const [arrayNumber, setArrayNumber] = useState(null);
   const [csvFile, setCsvFiles] = useState([]);
 
@@ -83,7 +86,8 @@ const AlertBox = () => {
   }
 
   function handleOkButton() {
-    const data = checkedBoxEmails !== null ? checkedBoxEmails : deleteEmail;
+    const data = checkedBoxEmails.length > 0 ? checkedBoxEmails : deleteEmail;
+        
     fetch("http://localhost:3000/contact", {
       method: "DELETE",
       headers: {
@@ -96,8 +100,9 @@ const AlertBox = () => {
       .then((data) => {
         if (data.status === "contact deleted") {
           setAlertOn(false);
-          
-          setNameCheckbox((prev) => !prev)
+         
+          nameCheckbox && setNameCheckbox(false)
+          searchDataOnTable(prev=>({...prev, state: false, value:[]}))
           setTableUpdated((prev) => !prev);
         }
       })

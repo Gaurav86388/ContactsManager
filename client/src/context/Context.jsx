@@ -13,6 +13,11 @@ export default function FileHandleContextProvider({ children }) {
   const [deleteEmail, setDeleteMail] = useState();
   const [checkedBoxEmails, setCheckedBoxEmails] = useState([]);
   const [nameCheckbox, setNameCheckbox] = useState(false);
+  const [receivedData, setReceivedData] = useState([]);
+  const [searchDataOnTable, setSearchDataOnTable] = useState({
+    state: false,
+    value:[]
+  });
 
   return (
     <fileHandle.Provider
@@ -28,7 +33,11 @@ export default function FileHandleContextProvider({ children }) {
         checkedBoxEmails,
         setCheckedBoxEmails,
         nameCheckbox, 
-        setNameCheckbox
+        setNameCheckbox,
+        receivedData,
+         setReceivedData,
+         searchDataOnTable, 
+         setSearchDataOnTable
       }}
     >
       {children}
