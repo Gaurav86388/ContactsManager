@@ -1,0 +1,80 @@
+
+
+.alert-overlay{
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+.alert-box{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 385px;
+    height: 318px;
+    z-index: 300;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.alert-icon{
+    border-radius: 50%;
+    background-color: rgba(45, 165, 252, 0.5);
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+.alert-box > h3{
+    color: rgba(31, 38, 51, 1);
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 14px;
+    }
+.alert-box > h6{
+color: rgba(45, 165, 252, 0.8);
+font-weight: 600;
+font-size: 18px;
+}
+
+#import-cancel-btn{
+border-radius: 5px;
+width: 120px;
+height: 36px;
+background-color: rgba(45, 165, 252, 1);
+color: white;
+
+border: 0;
+transition: all 0.3s ease-in;
+}
+
+#import-cancel-btn:hover{
+    background-color: rgb(13, 143, 235);
+}
+
+.delete-btns{
+    display: flex;
+    justify-content: center;
+    width: 240px;
+    margin-top: 30px;
+}
+#import-ok-btn{
+    
+border: 0;
+background: none;
+width: 50px;
+height: 36px;
+font-weight: 700;
+font-size: 18px;
+}
+
+#import-ok-btn:hover{
+    color: rgb(13, 143, 235);
+}
