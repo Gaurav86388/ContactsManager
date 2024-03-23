@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import loader from "/load.svg";
 import "./Loader.css";
 const Loader = () => {
-  console.log("loader rendered");
+
   return createPortal(
     <>
       <div className="loader-overlay" />

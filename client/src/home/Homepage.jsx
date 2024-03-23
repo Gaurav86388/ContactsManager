@@ -3,9 +3,10 @@ import "./Homepage.css";
 import Signin from "../auth/Signin";
 import Signup from "../auth/Signup";
 import Loader from "../extra/Loader";
-
+import AlertBox from "../components/AlertBox";
+import { useFileHandle } from "../context/Context";
 const Circle = memo(function Circle({ circleName, size, tableName }) {
-  console.log("cirle rendered");
+ 
 
   if (size === "small dots") {
     return (
@@ -31,16 +32,17 @@ const Circle = memo(function Circle({ circleName, size, tableName }) {
 });
 
 const Homepage = () => {
-  console.log("homepage rendered");
+
   const [signIn, setSignIn] = useState(true);
   const [signinSuccess, setSigninSuccess] = useState(false);
-
+  const { alertOn } = useFileHandle();
   function handleSignToggle() {
     setSignIn((prev) => !prev);
   }
 
   return (
     <>
+    {alertOn && <AlertBox />}
       {signinSuccess && <Loader />}
       <div className="homepage-container">
         <div className="content-outside">
@@ -60,7 +62,7 @@ const Homepage = () => {
                   setSigninSuccess={setSigninSuccess}
                 />
               ) : (
-                <Signup handleSignUpToggle={handleSignToggle} />
+                <Signup handleSignUpToggle={handleSignToggle}  />
               )}
             </>
           </div>

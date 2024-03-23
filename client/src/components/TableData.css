@@ -1,81 +1,129 @@
-
-.records-data{
-    width: 100%;
-
+.records-data {
+  width: 100%;
 }
 
-
-.records-data > thead>tr>th{
-    background-color: rgba(178, 223, 255, 1);
-    font-size: 20px;
-    font-weight: 600;
-    padding: 8px;   
-
+.records-data > thead > tr > th {
+  background-color: rgba(178, 223, 255, 1);
+  font-size: 20px;
+  font-weight: 600;
+  padding: 8px;
 }
 
-.table-heading-names{
-    border-right: 1px solid rgba(125, 125, 125, 1);
-    padding-right: 10px;
-    
+.table-heading-names {
+  border-right: 1px solid rgba(125, 125, 125, 1);
+  padding-right: 10px;
 }
-.table-heading-names>span{
-    color: rgba(56, 50, 44, 0.8);
-}
-
-#first-col-checkbox{
-    width: 16px;
-    height: 16px;
-    margin-right: 10px;
+.table-heading-names > span {
+  color: rgba(56, 50, 44, 0.8);
 }
 
-.records-data>tbody>tr>td{
-    padding-left: 10px;
-    height: 50px;
-
+#first-col-checkbox {
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
 }
 
-
-.records-data>tbody>tr:nth-child(2n){
-    background-color: rgba(178, 223, 255, 0.31);
-
+.records-data > tbody > tr > td {
+  padding-left: 10px;
+  height: 50px;
+  font-weight: 500;
+  font-size: 16px;
 }
 
-.action-icons{
-    display: flex;
-    gap: 5px;
-    width: 70px;
-}
-.edit-row, .delete-row{
-    border: 0;
-    background: none;
-}
-.arrows-images{
-    display: flex;
-    flex-direction: column;
-    gap:5px;
-    height: 10px;
-    width: 10px;
-}
-.Industry>.table-heading-names,
-.Designation>.table-heading-names,
-.Company>.table-heading-names
-{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    
+.records-data > tbody > tr:nth-child(2n) {
+  background-color: rgba(178, 223, 255, 0.31);
 }
 
+.action-icons {
+  display: flex;
+  gap: 5px;
+  width: 70px;
+}
+.edit-row,
+.delete-row {
+  border: 0;
+  background: none;
+}
+.arrows-images {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 10px;
+  width: 10px;
+}
+.Industry > .table-heading-names,
+.Designation > .table-heading-names,
+.Company > .table-heading-names {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
 
-.records-data > tbody >tr>td:first-child,
-.records-data > thead >tr>th:first-child{
-    border-radius: 10px 0 0 10px;
-    
- }
+.records-data > tbody > tr > td:first-child,
+.records-data > thead > tr > th:first-child {
+  border-radius: 10px 0 0 10px;
+}
 
+.records-data > thead > tr > th:last-child,
+.records-data > tbody > tr > td:last-child {
+  border-radius: 0 10px 10px 0;
+}
 
- .records-data > thead >tr>th:last-child,
- .records-data > tbody >tr>td:last-child{
-    border-radius: 0 10px 10px 0;
- }
+.records-data > thead > tr > td:nth-child(1),
+.records-data > tbody > tr > td:nth-child(1) {
+  width: 13%;
+}
+
+.records-data > thead > tr > td:nth-child(2),
+.records-data > tbody > tr > td:nth-child(2) {
+  width: 13%;
+}
+
+.records-data > thead > tr > td:nth-child(3),
+.records-data > tbody > tr > td:nth-child(3) {
+  width: 13%;
+}
+
+.records-data > thead > tr > td:nth-child(4),
+.records-data > tbody > tr > td:nth-child(4) {
+  width: 12%;
+}
+
+.records-data > thead > tr > td:nth-child(5),
+.records-data > tbody > tr > td:nth-child(5) {
+  width: 12%;
+}
+
+.records-data > thead > tr > td:nth-child(6),
+.records-data > tbody > tr > td:nth-child(6) {
+  width: 12%;
+}
+
+.records-data > thead > tr > td:nth-child(7),
+.records-data > tbody > tr > td:nth-child(7) {
+  width: 10%;
+}
+
+.records-data > thead > tr > td:nth-child(8),
+.records-data > tbody > tr > td:nth-child(8) {
+  width: 8%;
+}
+
+.email-section {
+  position: relative;
+  cursor: pointer;
+}
+.reveal-mail {
+  position: absolute;
+  background: white;
+  border-radius: 6px;
+  height: 33px;
+  width: fit-content;
+  padding: 5px 15px;
+  margin-top: 6px;
+  margin-left: -35px;
+  color: rgb(45, 165, 252, 0.8);
+  z-index: 100;
+  text-align: center;
+}

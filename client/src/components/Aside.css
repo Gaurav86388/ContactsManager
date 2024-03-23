@@ -35,6 +35,10 @@ gap:2px;
     background: rgba(45, 165, 252, 1);
     
 }
+.contacts-block:active{
+    background: rgb(13, 133, 219);
+    }
+
 #total-contacts-toggle{
     color: white;
 }

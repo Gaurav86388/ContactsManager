@@ -10,7 +10,7 @@ import leftonlyarrow from "/leftonlyarrow.svg";
 import rightonlyarrow from "/rightonlyarrow.svg";
 
 const Dashboard = () => {
-  console.log("dashboard rendered");
+ 
 
   const { alertOn } = useFileHandle();
   return (

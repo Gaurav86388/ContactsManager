@@ -29,7 +29,7 @@ function ActionButtons({ Email }) {
 }
 
 function FirstColCheckBox({ userMail, name, nameCheckbox, receivedData }) {
-  const { setCheckedBoxEmails} = useFileHandle();
+  const { setCheckedBoxEmails } = useFileHandle();
   const [isChecked, setIsChecked] = useState(nameCheckbox);
 
   function handleCheck(e) {
@@ -80,23 +80,54 @@ function FirstColCheckBox({ userMail, name, nameCheckbox, receivedData }) {
   );
 }
 
+function RevealFullMail({email}) {
+  const [revealMail, setRevealMail] = useState();
+
+  return (
+    <div
+      className="email-section "
+      onMouseEnter={() => setRevealMail(true)}
+      onMouseLeave={() => setRevealMail(false)}
+    >
+      {email.length > 20
+        ? email.slice(0, 20).concat("....")
+        : email}
+
+      {revealMail && <div className="reveal-mail">{email}</div>}
+    </div>
+  );
+}
+//
+
 const TableData = () => {
-  const [receivedData, setReceivedData] = useState([]);
-  const { tableUpdated , nameCheckbox, setNameCheckbox  } = useFileHandle();
-  
+  const {
+    tableUpdated,
+    nameCheckbox,
+    setNameCheckbox,
+    receivedData,
+    setReceivedData,
+    searchDataOnTable,
+  } = useFileHandle();
+
+  const localData = searchDataOnTable.state
+    ? searchDataOnTable.value
+    : receivedData;
+
+
 
   useEffect(() => {
+    const token = localStorage.getItem("jwt")
     fetch("http://localhost:3000/contact", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        "authorization": `bearer ${token}`,
         Accept: "application/json",
       },
     })
       .then((res) => res.json())
       .then((data) => {
         setReceivedData(data);
-        
       })
       .catch((e) => console.log(e));
   }, [tableUpdated]);
@@ -134,7 +165,7 @@ const TableData = () => {
           </tr>
         </thead>
         <tbody>
-          {receivedData.map((item, index) => {
+          {localData.map((item, index) => {
             return (
               <tr className="data-row" key={item.Name}>
                 <td>
@@ -148,7 +179,9 @@ const TableData = () => {
                 <td>{item.Designation}</td>
                 <td>{item.Company}</td>
                 <td>{item.Industry}</td>
-                <td>{item.Email}</td>
+                <td>
+                  <RevealFullMail email={item.Email}/>
+                </td>
                 <td>{item.PhoneNumber}</td>
                 <td>{item.Country}</td>
                 <td>

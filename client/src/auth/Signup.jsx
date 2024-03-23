@@ -1,8 +1,9 @@
 import React, {useState, useEffect, memo} from 'react'
 import "./Signup.css"
-
+import { useFileHandle } from '../context/Context'
 const Signup = memo(function Signup ({handleSignUpToggle}){
-  console.log("sign up rendered")
+  const {setAlertOn, setPressedButton} = useFileHandle()
+
   const [checkMatchPassword, setCheckMatchPassword] = useState(true)
   const [signup, setSignup] = useState({
     mailID: "",
@@ -41,8 +42,13 @@ const Signup = memo(function Signup ({handleSignUpToggle}){
     .then((res)=>res.json())
     .then(data=>{
       
-      console.log(data)
-      handleSignUpToggle()
+      if(data.message === 'Success register'){
+        setPressedButton("signup")
+        setAlertOn(true)
+        
+        handleSignUpToggle()
+      }
+      
     })
     .catch(e=>console.log(e))
 

@@ -39,9 +39,15 @@
 .hide-eye{
 
     position: absolute;
-    top: 54.9%;
+    top: 54%;
     right: 40%;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
 
+}
+.hide-eye :hover{
+    height: 21px;
+    width: 21px;
 }
 
 #signin-signin-btn{

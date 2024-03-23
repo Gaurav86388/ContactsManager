@@ -92,7 +92,7 @@ userRouter.post("/register", async(req, res)=>{
             }
         
             if(records){
-                return res.status(200).json({message: "Success register", records})
+                return res.status(200).json({message: "Success register"})
             }
         }
     

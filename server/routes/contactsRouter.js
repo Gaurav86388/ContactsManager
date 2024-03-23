@@ -34,7 +34,7 @@ function authenticateToken(req, res, next){
 
 }
 
-contactsRouter.get("/", async(req, res)=>{
+contactsRouter.get("/",  async(req, res)=>{
 
     let contactsData 
     try{
@@ -69,7 +69,7 @@ contactsRouter.post("/", async(req, res)=>{
 
 })
 
-contactsRouter.delete("/", async(req, res)=>{
+contactsRouter.delete("/",  async(req, res)=>{
 
     const data = req.body
 
