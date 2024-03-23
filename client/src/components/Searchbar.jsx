@@ -5,7 +5,7 @@ import { useFileHandle } from "../context/Context";
 
 const Searchbar = () => {
   const { receivedData, setSearchDataOnTable,tableUpdated } = useFileHandle();
-  const filterEmails = receivedData.map((item) => item && item.Email);
+  const filterEmails = receivedData?.map((item) => item && item.Email);
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [paraclicked, setParaclicked] = useState(false);

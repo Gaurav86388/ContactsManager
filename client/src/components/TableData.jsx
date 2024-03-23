@@ -113,11 +113,15 @@ const TableData = () => {
     ? searchDataOnTable.value
     : receivedData;
 
+
+
   useEffect(() => {
+    const token = localStorage.getItem("jwt")
     fetch("http://localhost:3000/contact", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        "authorization": `bearer ${token}`,
         Accept: "application/json",
       },
     })

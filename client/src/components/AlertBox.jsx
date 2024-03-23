@@ -8,7 +8,7 @@ import check from "/check.svg";
 import deleteicon from "/deleteAlerticon.svg";
 import uploadfile from "/uploadfile.svg";
 
-const AlertBox = () => {
+const AlertBox = ({registerSuccess}) => {
   const {
     pressedButton,
     setAlertOn,
@@ -17,11 +17,15 @@ const AlertBox = () => {
     checkedBoxEmails,
     setNameCheckbox,
     nameCheckbox,
-    searchDataOnTable
+    setSearchDataOnTable
   } = useFileHandle();
 
   const [arrayNumber, setArrayNumber] = useState(null);
   const [csvFile, setCsvFiles] = useState([]);
+useEffect(()=>{
+  registerSuccess && setArrayNumber(4)
+}, [registerSuccess, arrayNumber])
+
 
   useEffect(() => {
     setArrayNumber((prev) => {
@@ -31,18 +35,23 @@ const AlertBox = () => {
       } else if (pressedButton === "Delete") {
         value = 2;
       }
-
+      else if(pressedButton === "signup"){
+        value = 4;
+      }
       return value;
     });
   }, [pressedButton]);
 
   useEffect(() => {
+
     if (csvFile.length > 0) {
+      const token = localStorage.getItem("jwt")
       fetch("http://localhost:3000/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
+          "authorization": `bearer ${token}`,
         },
         body: JSON.stringify(csvFile),
       })
@@ -87,12 +96,13 @@ const AlertBox = () => {
 
   function handleOkButton() {
     const data = checkedBoxEmails.length > 0 ? checkedBoxEmails : deleteEmail;
-        
+        const token = localStorage.getItem("jwt")
     fetch("http://localhost:3000/contact", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        "authorization": `bearer ${token}`,
       },
       body: JSON.stringify({ Email: data }),
     })
@@ -102,15 +112,18 @@ const AlertBox = () => {
           setAlertOn(false);
          
           nameCheckbox && setNameCheckbox(false)
-          searchDataOnTable(prev=>({...prev, state: false, value:[]}))
+          setSearchDataOnTable(prev=>({...prev, state: false, value:[]}))
           setTableUpdated((prev) => !prev);
         }
       })
       .catch((e) => console.log(e));
   }
+
+
   return (
     <>
       <div className="alert-overlay" />
+
 
       {arrayNumber === 0 ? (
         <div
@@ -132,7 +145,7 @@ const AlertBox = () => {
         <div
           className="alert-box"
           onClick={
-            arrayNumber === 1 || arrayNumber === 3
+            arrayNumber === 1 || arrayNumber === 3 || arrayNumber === 4
               ? () => setAlertOn(false)
               : null
           }
@@ -140,11 +153,13 @@ const AlertBox = () => {
           <div className="alert-icon">
             <img
               src={alertArray[arrayNumber]?.imgUrl}
-              alt={`${alertArray.title} image`}
+              alt={`${alertArray[arrayNumber]?.title} image`}
             />
           </div>
+
           <h3>{alertArray[arrayNumber]?.title}</h3>
           <h6>{alertArray[arrayNumber]?.message} </h6>
+
           {arrayNumber === 1 ||
             (arrayNumber === 2 && (
               <div className="delete-btns">
@@ -170,12 +185,12 @@ export default AlertBox;
 const alertArray = [
   {
     title: "Import File",
-    message: "Drag and Drop a CSV File to Upload",
+    message: "Drag and Drop a CSV File to Upload.",
     imgUrl: uploadfile,
   },
   {
     title: "Import Complete",
-    message: "CSV File is Uploaded",
+    message: "CSV File is Uploaded.",
     imgUrl: check,
   },
   {
@@ -188,6 +203,11 @@ const alertArray = [
     message: "",
     imgUrl: check,
   },
+  {
+    title: "Registration Successful",
+    message: "Your account has been created successfully.",
+    imgUrl: check,
+  }
 ];
 const fileTypes = [
   "application/vnd.ms-excel",

@@ -7,6 +7,7 @@ const Signin = memo(function Signin({ handleSignUpToggle, setSigninSuccess }) {
   console.log("sign in rendered");
   const [userNotFound, setNotUserFound] = useState(false);
   const [passwordInCorrect, setPasswordInCorrect] = useState(false);
+  const [onEyeClick, setOnEyeClick] = useState(false)
 
   const navigate = useNavigate();
   const [signinDetails, setSigninDetails] = useState({
@@ -77,18 +78,18 @@ const Signin = memo(function Signin({ handleSignUpToggle, setSigninSuccess }) {
             userNotFound ? "error-message-active" : "error-message-inactive"
           }
         >
-          Please enter a valid phone number
+          Please enter a valid mail ID
         </p>
 
         <input
-          type="password"
+          type={onEyeClick ? "text": "password"}
           required
           placeholder="Password"
           id="signin-password"
           name="password"
           onChange={handleOnChange}
         />
-        <div className="hide-eye">
+        <div className="hide-eye" onMouseDown={()=>setOnEyeClick(true)} onMouseUp={()=>setOnEyeClick(false)}>
           <img src={eyeimage} alt="dont look image" />
         </div>
 
