@@ -117,7 +117,7 @@ const TableData = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("jwt")
-    fetch("http://localhost:3000/contact", {
+    fetch("https://contactsmanager-4ml8.onrender.com/contact", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

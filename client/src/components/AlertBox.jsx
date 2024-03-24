@@ -46,7 +46,7 @@ useEffect(()=>{
 
     if (csvFile.length > 0) {
       const token = localStorage.getItem("jwt")
-      fetch("http://localhost:3000/contact", {
+      fetch("https://contactsmanager-4ml8.onrender.com/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -97,7 +97,7 @@ useEffect(()=>{
   function handleOkButton() {
     const data = checkedBoxEmails.length > 0 ? checkedBoxEmails : deleteEmail;
         const token = localStorage.getItem("jwt")
-    fetch("http://localhost:3000/contact", {
+    fetch("https://contactsmanager-4ml8.onrender.com/contact", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
