@@ -31,7 +31,7 @@ const Signup = memo(function Signup ({handleSignUpToggle}){
     if(signup.password !== signup.confirmPassword) return setCheckMatchPassword(false)
 
    
-      fetch("http://localhost:3000/user/register", {
+      fetch("https://contactsmanager-4ml8.onrender.com/user/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

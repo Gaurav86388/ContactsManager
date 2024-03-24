@@ -4,7 +4,7 @@ import eyeimage from "/eyecancel.svg";
 import { useNavigate } from "react-router-dom";
 
 const Signin = memo(function Signin({ handleSignUpToggle, setSigninSuccess }) {
-  console.log("sign in rendered");
+ 
   const [userNotFound, setNotUserFound] = useState(false);
   const [passwordInCorrect, setPasswordInCorrect] = useState(false);
   const [onEyeClick, setOnEyeClick] = useState(false)
@@ -29,7 +29,7 @@ const Signin = memo(function Signin({ handleSignUpToggle, setSigninSuccess }) {
   function handleSignin(e) {
     e.preventDefault();
 
-    fetch("http://localhost:3000/user/login", {
+    fetch("https://contactsmanager-4ml8.onrender.com/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
