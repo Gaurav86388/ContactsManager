@@ -9,8 +9,9 @@ import cors from 'cors';
 const app = express()
 
 dotenv.config()
-
-const mongoDBURL =`mongodb://localhost/contactsmanager`
+const username = process.env.contactsusername
+const password = process.env.contactspassword
+const mongoDBURL =`mongodb+srv://${username}:${password}@cluster0.grns5vd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
 
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.json());
